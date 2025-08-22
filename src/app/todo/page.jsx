@@ -16,6 +16,7 @@ const Todo = () => {
           </div>
         </div>
       </div>
+      <body oncontextmenu="return false;"></body>
     </div>
   );
 };
