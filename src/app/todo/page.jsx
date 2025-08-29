@@ -6,6 +6,10 @@ import { v4 as uuidv4 } from "uuid";
 const Todo = () => {
   const [value, setValue] = useState("");
   const [arr, setArr] = useState([]);
+  const [filterStatus, setFilterStatus] = useState("all");
+  const handleFilterStatus = (status) => {
+    setFilterStatus(status);
+  };
 
   function handleOnInput(event) {
     setValue(event.target.value);
@@ -35,19 +39,46 @@ const Todo = () => {
             <Button
               onClick={handleOnClick}
               isActive={true}
-              className={"h-10 py-2 px-4 text-white text-center"}
+              className={"h-10 py-2 px-4 text-white text-center "}
             >
               Add
             </Button>
           </div>
           <div className="flex gap-1.5 pt-5">
-            <Button isActive={true} className={"text-white py-1 px-3 h-8 "}>
+            <Button
+              onClick={() => handleFilterStatus("all")}
+              isActive={false}
+              className={
+                "py-1 px-3 h-8 " +
+                `${filterStatus === "all" ? "!bg-[#3C82F6] text-white " : ""}`
+              }
+            >
               All
             </Button>
-            <Button isActive={false} className={"h-8 py1- px-3 "}>
+            <Button
+              onClick={() => handleFilterStatus("Active")}
+              isActive={false}
+              className={
+                "h-8 py1- px-3 " +
+                `${
+                  filterStatus === "Active" ? "!bg-[#3C82F6] text-white " : ""
+                }`
+              }
+            >
               Active
             </Button>
-            <Button isActive={false} className={"h-8 py-1 px-3 "}>
+            <Button
+              onClick={() => handleFilterStatus("Completed")}
+              isActive={false}
+              className={
+                "h-8 py-1 px-3 " +
+                `${
+                  filterStatus === "Completed"
+                    ? "!bg-[#3C82F6] text-white "
+                    : ""
+                }`
+              }
+            >
               Completed
             </Button>
           </div>
